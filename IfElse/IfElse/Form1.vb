@@ -4,26 +4,26 @@ Public Class Form1
 
     Private Sub btnFindLarger_Click(sender As System.Object, e As System.EventArgs) Handles btnFindLarger.Click
 
-        '-----isNumeric check-----
+        '-----isNumeric check, calculation and display-----
         Dim FirstNumber As Double
         Dim SecondNumber As Double
 
-        FirstNumber = CDbl(txtFirstNum.Text)
-        SecondNumber = CDbl(txtSecondNum.Text)
+        If IsNumeric(txtFirstNum.Text) And IsNumeric(txtSecondNum.Text) = True Then
+            FirstNumber = CDbl(txtFirstNum.Text)
+            SecondNumber = CDbl(txtSecondNum.Text)
 
-        '-----calculation and display-----
-        If FirstNumber - SecondNumber > 0 Then
-            txtResult.Text = CStr(FirstNumber)
-        End If
+            If FirstNumber - SecondNumber > 0 Then
+                txtResult.Text = CStr(FirstNumber) & " is larger"
+            ElseIf FirstNumber - SecondNumber < 0 Then
+                txtResult.Text = CStr(SecondNumber) & " is larger"
+            ElseIf FirstNumber - SecondNumber = 0 Then
+                txtResult.Text = "They are equal"
+            End If
 
-        If FirstNumber - SecondNumber < 0 Then
-            txtResult.Text = CStr(SecondNumber)
-        End If
-
-        If FirstNumber - SecondNumber = 0 Then
-            txtResult.Text = "The two are equal"
+            '-----numeric check fail message-----
+        Else
+            MessageBox.Show("Please enter a valid number")
         End If
 
     End Sub
-
 End Class
